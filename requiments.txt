@@ -1,0 +1,3 @@
+deepspeech
+easy-pyttsx3
+asyncio
