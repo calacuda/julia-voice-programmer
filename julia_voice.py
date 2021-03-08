@@ -30,9 +30,11 @@ def speak(utterance):
     says uterance curently a wrapper for pt.say() so this can be integrated with mycroft
     later.
     """
-    #pt.say(utterance)
+    if utterance:
+        #print("utterance : ", utterance)
+        pt.say(utterance)
     #print("utterance : ", utterance)
-    os.system(f"echo \"{utterance}\" | festival --tts")
+    #os.system(f"echo \"{utterance}\" | festival --tts")
     #run(f"echo \"{utterance}\" | festival --tts ", shell=True)
     
 
@@ -84,7 +86,7 @@ def read(fd):
     data = os.read(fd, 1024)
     readable = ansi_escape.sub('', data.decode("utf-8"))
     bare = readable.replace("\r", "")
-    if "julia>" in bare: #bare[0:6].replace("julia>", " "):
+    if bare[0:6].replace("julia>", " "):
         with open(pass_file, 'a') as pf:
             pf.write(bare) # + "\n" if bare else "")
         with open(hist_file, 'a') as hf:
